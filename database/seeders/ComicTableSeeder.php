@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+// Importo il model
+use App\Models\Comic;
+
 class ComicTableSeeder extends Seeder
 {
     /**
@@ -14,7 +17,7 @@ class ComicTableSeeder extends Seeder
      */
     public function run()
     {
-        //Inserisco i dati dei comics
+        //Definisco i dati dei comics
         $comics = [
             [
                 "title" => "Action Comics #1000: The Deluxe Edition",
@@ -125,5 +128,19 @@ class ComicTableSeeder extends Seeder
                 "type" => "graphic novel",
             ],
         ];
+
+        // Ora che ho definito i dati li ciclo e li inserisco nella tabella
+        foreach ($comics as $comic) {
+
+            Comic::create([
+                'title' => $comic["title"],
+                'description' => $comic["description"],
+                'thumb' => $comic["thumb"],
+                'price' => $comic["price"],
+                'series' => $comic["series"],
+                'sale_date' => $comic["sale_date"],
+                'type' => $comic["type"]
+            ]);
+        }
     }
 }
