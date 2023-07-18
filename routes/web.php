@@ -10,5 +10,5 @@ Route::get('/', [MainController::class, 'index'])
     ->name("index");
 
 // Creo la route per la show
-Route::get('/show', [MainController::class, 'show'])
+Route::get('/show/{id}', [MainController::class, 'show'])
     ->name("show");

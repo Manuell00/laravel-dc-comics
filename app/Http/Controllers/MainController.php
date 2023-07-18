@@ -16,4 +16,12 @@ class MainController extends Controller
         $comics = Comic::all();
         return view("home", compact("comics"));
     }
+
+
+    public function show($id)
+    {
+        // Vado a recuperare l'elemento id dal db grazie al findOrFail
+        $comic = Comic::findOrFail($id);
+        return view("show", compact("comic"));
+    }
 };
