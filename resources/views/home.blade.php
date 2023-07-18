@@ -14,10 +14,10 @@
                 {{$comic -> title}}
             </a>
 
-
         </li>
         @endforeach
     </ul>
+    <span><a href=" {{route('create')}}">Add Comic</a></span>
 </div>
 
 
