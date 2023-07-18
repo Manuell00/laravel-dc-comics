@@ -18,8 +18,8 @@ return new class extends Migration
 
             // Inserisco i campi della table 
             $table->string('title', 64);
-            $table->text('description');
-            $table->text('thumb', 64);
+            $table->text('description')->nullable();
+            $table->text('thumb', 64)->nullable();
             $table->string('price');
             $table->string('series');
             $table->date('sale_date');

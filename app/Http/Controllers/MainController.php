@@ -16,4 +16,9 @@ class MainController extends Controller
 
         return view("comic.index", compact("comics"));
     }
+
+    public function show($id){
+        $comic = Comic :: findOrFail($id);
+        return view('show')
+    }
 }
