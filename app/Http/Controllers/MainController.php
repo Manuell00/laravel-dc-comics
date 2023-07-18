@@ -12,13 +12,8 @@ class MainController extends Controller
     //Index, ritorno tutti i dati della tabella e li metto in comics.index
     public function index()
     {
+        // Passo al controller i dati che ci servono
         $comics = Comic::all();
-
-        return view("comic.index", compact("comics"));
+        return view("home", compact("comics"));
     }
-
-    public function show($id){
-        $comic = Comic :: findOrFail($id);
-        return view('show')
-    }
-}
+};

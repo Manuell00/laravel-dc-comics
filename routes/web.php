@@ -2,17 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Importo il controller
 use App\Http\Controllers\MainController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Creo la route per l'index
+Route::get('/', [MainController::class, 'index'])
+    ->name("index");
 
-Route:: get('/', [MainController :: class,'index']
+// Creo la route per la show
+Route::get('/show', [MainController::class, 'show'])
+    ->name("show");
