@@ -7,6 +7,8 @@
     <!-- Definisco la form -->
     <form method="POST" action="{{route('store')}}">
 
+        <!-- Sicurezza -->
+        @method('POST')
         @csrf
 
         <label for="title"><b>title : </b></label>
