@@ -23,12 +23,11 @@ Route::post('\store', [MainController::class, 'store'])
     ->name('store');
 
 
-
 // Creo la rotta per lo store della edit
-Route::get('\edit\{id}', [MainController::class, 'edit'])
+Route::put('\edit\{id}', [MainController::class, 'edit'])
     ->name('edit');
 
-Route::get('\update\{id}', [MainController::class, 'update'])
+Route::put('\update\{id}', [MainController::class, 'update'])
     ->name('update');
 
 

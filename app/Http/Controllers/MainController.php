@@ -9,22 +9,21 @@ use App\Models\Comic;
 
 class MainController extends Controller
 {
-    //Index, ritorno tutti i dati della tabella e li metto in comics.index
     public function index()
     {
-        // Passo al controller i dati che ci servono
         $comics = Comic::all();
         return view("home", compact("comics"));
     }
 
 
+    // Definisco la show
     public function show($id)
     {
-        // Vado a recuperare l'elemento id dal db grazie al findOrFail
         $comic = Comic::findOrFail($id);
         return view("show", compact("comic"));
     }
 
+    // Definisco la create e il relativo store
     public function create()
     {
         return view("create");
@@ -32,18 +31,19 @@ class MainController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        // Inserisco la validate
+        $data = $request->validate([
+            'title' => 'required|max 64',
+            'description' => 'nullable|max 1000',
+            'thumb' => 'nullable|max 64',
+            'price' => 'required',
+            'series' => 'required|max 255',
+            'sale_date' => 'required',
+            'type' => 'required|max 255'
+        ]);
 
         // Posso inserire dei campi required per i valori in ingresso
-        $comic = Comic::create([
-            'title' => $data["title"],
-            'description' => $data["description"],
-            'thumb' => $data["thumb"],
-            'price' => $data["price"],
-            'series' => $data["series"],
-            'sale_date' => $data["sale_date"],
-            'type' => $data["type"]
-        ]);
+        $comic = Comic::create($data);
 
         // return redirect()->route("show", $comic->id);
         return redirect()->route("index");
@@ -60,7 +60,7 @@ class MainController extends Controller
         $data = $request->all();
         $comic = Comic::findOrFail($id);
         $comic->update($data);
-        return redirect()->route('show', $comic->$id);
+        return redirect()->route('show', $comic->id);
     }
 
     public function delete($id)
