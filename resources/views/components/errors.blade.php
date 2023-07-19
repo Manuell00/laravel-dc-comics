@@ -1,5 +1,7 @@
-{{-- Gestione dell'errore --}}
+{{-- Gestione dell'errore generica --}}
 
+
+{{-- 
 @if ($errors->any())
     <div class="alert-danger alert">
         <ul>
@@ -8,4 +10,4 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}

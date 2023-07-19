@@ -32,15 +32,35 @@ class MainController extends Controller
     public function store(Request $request)
     {
         // Inserisco la validate
-        $data = $request->validate([
-            'title' => 'required|max:64',
-            'description' => 'nullable|max:255',
-            'thumb' => 'nullable|max:64',
-            'price' => 'required',
-            'series' => 'required|max:255',
-            'sale_date' => 'required',
-            'type' => 'required|max:255'
-        ]);
+        $data = $request->validate(
+            [
+                'title' => 'required|max:64',
+                'description' => 'nullable|max:255',
+                'thumb' => 'nullable|max:64',
+                'price' => 'required',
+                'series' => 'required|max:255',
+                'sale_date' => 'required',
+                'type' => 'required|max:255'
+            ],
+            [
+                'title.required' => 'È Necessario inserire il nome',
+                'title.max' => 'Il titolo non puà superare i 64 caratteri',
+
+                'description.max' => 'La descrizione non puà superare i 255 caratteri',
+
+                'price.required' => 'È Necessario inserire il prezzo',
+
+                'series.required' => 'È Necessario inserire il nome',
+                'series.max' => 'Il titolo non puà superare i 255 caratteri',
+
+                'sale_date.required' => 'È Necessario inserire la data',
+
+                'type.required' => 'È Necessario inserire la tipologia',
+                'type.max' => 'Il titolo non puà superare i 255 caratteri',
+
+
+            ]
+        );
 
         // Posso inserire dei campi required per i valori in ingresso
         $comic = Comic::create($data);
