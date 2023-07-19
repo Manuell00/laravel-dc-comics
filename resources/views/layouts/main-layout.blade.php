@@ -25,12 +25,12 @@
     </div>
     
 
+    <!-- Gestisco gli errori -->
+    @include("components.errors")
 
     <!-- Includo il componente del footer -->
     @include("components.footer")
 
-    <!-- Gestisco gli errori -->
-    @include("components.errors")
 
 </body>
 
