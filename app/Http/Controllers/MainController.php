@@ -47,4 +47,25 @@ class MainController extends Controller
         // return redirect()->route("show", $comic->id);
         return redirect()->route("index");
     }
+
+    public function edit($id)
+    {
+        $comic = Comic::findOrFail($id);
+        return view("edit", compact("comic"));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        $comic = Comic::findOrFail($id);
+        $comic->update($data);
+        return redirect()->route('show', $comic->$id);
+    }
+
+    public function delete($id)
+    {
+        $comic = Comic::findOrFail($id);
+        $comic->delete();
+        return redirect()->route("index");
+    }
 };

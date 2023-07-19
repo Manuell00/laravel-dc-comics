@@ -13,10 +13,25 @@ Route::get('/', [MainController::class, 'index'])
 Route::get('/show/{id}', [MainController::class, 'show'])
     ->name("show");
 
-// Creo la route per la show
+
+
+// Creo la rotta per lo store della creation
 Route::get('/create', [MainController::class, 'create'])
     ->name("create");
 
-// Creo la rotta per lo store della creation
 Route::post('\store', [MainController::class, 'store'])
     ->name('store');
+
+
+
+// Creo la rotta per lo store della edit
+Route::get('\edit\{id}', [MainController::class, 'edit'])
+    ->name('edit');
+
+Route::post('\update\{id}', [MainController::class, 'update'])
+    ->name('update');
+
+
+// Creo la rotta per lo store della delete
+Route::post('\delete\{id}', [MainController::class, 'delete'])
+    ->name('delete');

@@ -13,7 +13,19 @@
             <a href="{{ route('show', $comic -> id)}}">
                 {{$comic -> title}}
             </a>
+            <br>
 
+            <div class="row justify-content-center">
+                <a class="col-1 btn btn-primary" href="{{ route('edit', $comic -> id)}}">EDIT</a>
+    
+                <form class="col-1" action="{{ route('delete', $comic -> id)}}">
+                    <!-- Sicurezza -->
+                    @method('POST')
+                    @csrf
+                    <input type="submit" class="btn btn-primary" value="DELETE">
+                </form>
+            </div>
+            <br>
         </li>
         @endforeach
     </ul>
