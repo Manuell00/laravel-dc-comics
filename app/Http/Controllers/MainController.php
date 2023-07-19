@@ -33,13 +33,13 @@ class MainController extends Controller
     {
         // Inserisco la validate
         $data = $request->validate([
-            'title' => 'required|max 64',
-            'description' => 'nullable|max 1000',
-            'thumb' => 'nullable|max 64',
+            'title' => 'required|max:64',
+            'description' => 'nullable|max:255',
+            'thumb' => 'nullable|max:64',
             'price' => 'required',
-            'series' => 'required|max 255',
+            'series' => 'required|max:255',
             'sale_date' => 'required',
-            'type' => 'required|max 255'
+            'type' => 'required|max:255'
         ]);
 
         // Posso inserire dei campi required per i valori in ingresso
