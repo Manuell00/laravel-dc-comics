@@ -28,7 +28,7 @@ Route::post('\store', [MainController::class, 'store'])
 Route::get('\edit\{id}', [MainController::class, 'edit'])
     ->name('edit');
 
-Route::post('\update\{id}', [MainController::class, 'update'])
+Route::get('\update\{id}', [MainController::class, 'update'])
     ->name('update');
 
 

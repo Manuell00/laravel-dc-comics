@@ -8,7 +8,7 @@
     <form method="POST" action="{{route('update', $comic->id)}}">
 
         <!-- Sicurezza -->
-        @method('PUT')
+        @method('POST')
         @csrf
 
         <label for="title"><b>title : </b></label>

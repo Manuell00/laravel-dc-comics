@@ -34,6 +34,7 @@ class MainController extends Controller
     {
         $data = $request->all();
 
+        // Posso inserire dei campi required per i valori in ingresso
         $comic = Comic::create([
             'title' => $data["title"],
             'description' => $data["description"],

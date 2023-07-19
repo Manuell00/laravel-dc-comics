@@ -16,12 +16,18 @@
             <br>
 
             <div class="row justify-content-center">
-                <a class="col-1 btn btn-primary" href="{{ route('edit', $comic -> id)}}">EDIT</a>
-    
-                <form class="col-1" action="{{ route('delete', $comic -> id)}}">
+                
+                <form class="col-1" method="POST" action="{{ route('edit', $comic -> id)}}">
                     <!-- Sicurezza -->
-                    @method('POST')
                     @csrf
+                    @method('PUT')
+                    <input type="submit" class="btn btn-primary" value="EDIT">
+                </form>
+
+                <form class="col-1" method="POST" action="{{ route('delete', $comic -> id)}}">
+                    <!-- Sicurezza -->
+                    @csrf
+                    @method('POST')
                     <input type="submit" class="btn btn-primary" value="DELETE">
                 </form>
             </div>
