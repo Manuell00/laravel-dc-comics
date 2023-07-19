@@ -33,33 +33,8 @@ class MainController extends Controller
     {
         // Inserisco la validate
         $data = $request->validate(
-            [
-                'title' => 'required|max:64',
-                'description' => 'nullable|max:255',
-                'thumb' => 'nullable|max:64',
-                'price' => 'required',
-                'series' => 'required|max:255',
-                'sale_date' => 'required',
-                'type' => 'required|max:255'
-            ],
-            [
-                'title.required' => 'È Necessario inserire il nome',
-                'title.max' => 'Il titolo non puà superare i 64 caratteri',
-
-                'description.max' => 'La descrizione non puà superare i 255 caratteri',
-
-                'price.required' => 'È Necessario inserire il prezzo',
-
-                'series.required' => 'È Necessario inserire il nome',
-                'series.max' => 'Il titolo non puà superare i 255 caratteri',
-
-                'sale_date.required' => 'È Necessario inserire la data',
-
-                'type.required' => 'È Necessario inserire la tipologia',
-                'type.max' => 'Il titolo non puà superare i 255 caratteri',
-
-
-            ]
+            $this->getValidationRules(),
+            $this->getValidationMessages()
         );
 
         // Posso inserire dei campi required per i valori in ingresso
@@ -77,7 +52,10 @@ class MainController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validate(
+            $this->getValidationRules(),
+            $this->getValidationMessages()
+        );
         $comic = Comic::findOrFail($id);
         $comic->update($data);
         return redirect()->route('show', $comic->id);
@@ -88,5 +66,42 @@ class MainController extends Controller
         $comic = Comic::findOrFail($id);
         $comic->delete();
         return redirect()->route("index");
+    }
+
+
+    // Definisco i metodi per gli errori
+    private function getValidationRules()
+    {
+
+        return [
+            'title' => 'required|max:64',
+            'description' => 'nullable|max:255',
+            'thumb' => 'nullable|max:64',
+            'price' => 'required',
+            'series' => 'required|max:255',
+            'sale_date' => 'required',
+            'type' => 'required|max:255'
+        ];
+    }
+    private function getValidationMessages()
+    {
+
+        return [
+            'title.required' => 'È Necessario inserire il nome',
+            'title.max' => 'Il titolo non puà superare i 64 caratteri',
+
+            'description.max' => 'La descrizione non puà superare i 255 caratteri',
+
+            'price.required' => 'È Necessario inserire il prezzo',
+
+            'series.required' => 'È Necessario inserire il nome',
+            'series.max' => 'Il titolo non puà superare i 255 caratteri',
+
+            'sale_date.required' => 'È Necessario inserire la data',
+
+            'type.required' => 'È Necessario inserire la tipologia',
+            'type.max' => 'Il titolo non puà superare i 255 caratteri'
+
+        ];
     }
 };
